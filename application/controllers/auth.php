@@ -3,6 +3,11 @@
 	class Auth extends CI_controller
 	{
 
+		function __construct () {
+			parent::__construct();
+			$this->load->model('M_auth');
+		}
+
 		function index ()
 		{
 			$data['title'] = "Login page";
