@@ -18,6 +18,13 @@
 
   <!-- Custom styles for this template-->
   <link href="<?= base_url('assets/') ?>css/sb-admin-2.min.css" rel="stylesheet">
+  <style>
+    .bg-login-image {
+      background: url("<?= base_url('assets/img/bg-login.jpg') ?>");
+      background-position: center;
+      background-size: cover;
+    }
+  </style>
 
 </head>
 
@@ -52,9 +59,6 @@
                     </a>
                   </form>
                   <hr>
-                  <div class="text-center">
-                    <a class="small" href="#">Forgot Password?</a>
-                  </div>
                   <div class="text-center">
                     <a class="small" href="<?= base_url('auth/register') ?>">Create an Account!</a>
                   </div>
