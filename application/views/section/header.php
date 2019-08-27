@@ -216,15 +216,15 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="" method="POST">
+        <form action="<?= base_url('admin/newentry') ?>" method="POST">
           <div class="form-group">
             <label class="d-block">Jenis</label>
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="masuk" name="jenis" class="custom-control-input">
+              <input type="radio" id="masuk" name="jenis" class="custom-control-input" value="pemasukan" required>
               <label class="custom-control-label" for="masuk">Pemasukan</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="keluar" name="jenis" class="custom-control-input">
+              <input type="radio" id="keluar" name="jenis" class="custom-control-input" value="pengeluaran" required>
               <label class="custom-control-label" for="keluar">Pengeluaran</label>
             </div>
           </div>
@@ -232,25 +232,25 @@
             <div class="form-group">
               <label for="kategori">Kategori</label>
               <a href="#" class="float-right text-secondary" data-toggle="modal" data-target="#newkategori" data-dismiss="modal"><i class="fa fa-plus mr-2"></i>Kategori baru</a>
-              <select class="form-control" id="kategori" name="kategori">
-                <option>Masjid</option>
-                <option>takjil</option>
-                <option>ramadhan</option>
+              <select class="form-control" id="kategori" name="kategori" required>
+                <?php foreach ($kategori as $value) :?>
+                <option value="<?= $value['id_kategori'] ?>"><?= $value['nama_kategori'] ?></option>
+                <?php endforeach; ?>
               </select>
             </div>
           </div>
           <div class="form-group">
             <label for="uang">Jumlah uang</label>
-            <input type="number" class="form-control" name="uang" placeholder="masukkan jumlah uang">
+            <input type="number" class="form-control" name="uang" placeholder="masukkan jumlah uang" required>
           </div>
           <div class="form-group">
             <label for="keterangan">Keterangan</label>
-            <textarea class="form-control" name="keterangan" placeholder="masukkan keterangan"></textarea>
+            <textarea class="form-control" name="keterangan" placeholder="masukkan keterangan" required></textarea>
           </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Tambah</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Tambah</button>
       </div>
         </form>
     </div>
@@ -276,7 +276,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Tambah</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Tambah</button>
       </div>
         </form>
     </div>
