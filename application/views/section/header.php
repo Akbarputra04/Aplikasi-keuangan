@@ -57,16 +57,19 @@
       <div class="sidebar-heading">
         Menu
       </div>
+
+      <li class="nav-item <?php if($this->uri->segment('2') == 'semua') echo 'active' ?>">
+        <a class="nav-link collapsed" href="<?= base_url('admin/semua') ?>"><i class="fas fa-fw fa-history"></i>Riwayat</a>
+      </li>
       
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item <?php if($this->uri->segment('2') == 'semua' OR $this->uri->segment('2') == 'pemasukan' OR $this->uri->segment('2') == 'pengeluaran') echo 'active' ?>">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseriwayat" aria-expanded="true" aria-controls="collapseriwayat">
-          <i class="fas fa-fw fa-history"></i>
-          <span>Riwayat</span>
+      <li class="nav-item <?php if($this->uri->segment('2') == 'pemasukan' OR $this->uri->segment('2') == 'pengeluaran') echo 'active' ?>">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#masterdata" aria-expanded="true" aria-controls="collapseriwayat">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Master data</span>
         </a>
-        <div id="collapseriwayat" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="masterdata" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="<?= base_url('admin/semua') ?>">Semua</a>
             <a class="collapse-item" href="<?= base_url('admin/pemasukan') ?>">Pemasukan</a>
             <a class="collapse-item" href="<?= base_url('admin/pengeluaran') ?>">Pengeluaran</a>
           </div>
