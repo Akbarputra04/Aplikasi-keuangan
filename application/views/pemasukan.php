@@ -9,22 +9,22 @@
 
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link text-success active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Masjid</a>
+              <a class="nav-link text-success active" id="masjid-tab" data-toggle="tab" href="#masjid" role="tab" aria-controls="masjid" aria-selected="true">Masjid</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-success" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Takjil</a>
+              <a class="nav-link text-success" id="takjil-tab" data-toggle="tab" href="#takjil" role="tab" aria-controls="takjil" aria-selected="false">Takjil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-success" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Ramadhan</a>
+              <a class="nav-link text-success" id="ramadhan-tab" data-toggle="tab" href="#ramadhan" role="tab" aria-controls="ramadhan" aria-selected="false">Ramadhan</a>
             </li>
           </ul>
+
           <div class="tab-content mt-4" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="tab-pane fade show active" id="masjid" role="tabpanel" aria-labelledby="masjid-tab">
               <!-- DataTales Example -->
               <div class="card shadow mb-4 mt-4">
                 <div class="card-header d-sm-flex align-items-center justify-content-between py-3">
                 	<h6 class="m-0 font-weight-bold text-success">Data pemasukan masjid</h6>
-                	<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-sm text-white-50 mr-2"></i>Tambah pemasukan masjid</a>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -77,12 +77,11 @@
                 </div>
               </div>
             </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="tab-pane fade" id="takjil" role="tabpanel" aria-labelledby="takjil-tab">
               <!-- DataTales Example -->
               <div class="card shadow mb-4">
                 <div class="card-header d-sm-flex align-items-center justify-content-between py-3">
                   <h6 class="m-0 font-weight-bold text-success">Data pemasukan takjil</h6>
-                  <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-sm text-white-50 mr-2"></i>Tambah pemasukan takjil</a>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -135,12 +134,11 @@
                 </div>
               </div>
             </div>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <div class="tab-pane fade" id="ramadhan" role="tabpanel" aria-labelledby="ramadhan-tab">
               <!-- DataTales Example -->
               <div class="card shadow mb-4">
                 <div class="card-header d-sm-flex align-items-center justify-content-between py-3">
                   <h6 class="m-0 font-weight-bold text-success">Data pemasukan ramadhan</h6>
-                  <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-sm text-white-50 mr-2"></i>Tambah pemasukan ramadhan</a>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
