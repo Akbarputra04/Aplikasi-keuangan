@@ -21,7 +21,7 @@
 
 			$this->form_validation->set_rules('username', 'Username', 'required');
 			$this->form_validation->set_rules('password', 'Password', 'required');
-			$this->form_validation->set_error_delimiters('<div class="small ml-3 text-danger">', '</div>');
+			$this->form_validation->set_error_delimiters('<div class="invalid-feedback ml-3">', '</div>');
 
 			if ($this->form_validation->run() == false) {
 				

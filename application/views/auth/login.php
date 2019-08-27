@@ -57,11 +57,11 @@
                   <?php endif ?>
                   <form class="user" action="<?= base_url('auth/login') ?>" method="POST">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" name="username" id="username" aria-describedby="emailHelp" placeholder="Enter username...">
+                      <input type="text" class="form-control form-control-user <?= (form_error('username')) ? 'is-invalid' : ''; ?>" name="username" id="username" aria-describedby="emailHelp" placeholder="Enter username...">
                       <?php echo form_error('username'); ?>
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Password">
+                      <input type="password" class="form-control form-control-user <?= (form_error('password')) ? 'is-invalid' : '' ; ?>" name="password" id="password" placeholder="Password">
                       <?php echo form_error('password'); ?>
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">
