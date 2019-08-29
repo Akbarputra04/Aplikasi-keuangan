@@ -3,197 +3,78 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <div class="d-sm-flex align-items-center justify-content-between mb-0">
             <h1 class="h3 mb-0 text-gray-800">Pengeluaran</h1>
           </div>
 
           <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <?php foreach ($kategori as $key => $value) : ?>
             <li class="nav-item">
-              <a class="nav-link text-success active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Masjid</a>
+              <a href="" class="nav-link text-success <?= ($key == 0) ? 'active' : '' ; ?>" id="<?= $value['nama_kategori'] ?>-tab" data-toggle="tab" data-target="#<?= $value['nama_kategori'] ?>" role="tab" aria-selected="true"><?= $value['nama_kategori'] ?></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-success" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Takjil</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-success" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Ramadhan</a>
-            </li>
+            <?php endforeach; ?>
           </ul>
+
           <div class="tab-content mt-4" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <?php foreach ($kategori as $key => $value) : ?>
+            <div class="tab-pane fade show <?= ($key == 0) ? 'active' : '' ; ?>" id="<?= $value['nama_kategori'] ?>" role="tabpanel">
               <!-- DataTales Example -->
               <div class="card shadow mb-4 mt-4">
                 <div class="card-header d-sm-flex align-items-center justify-content-between py-3">
-                  <h6 class="m-0 font-weight-bold text-success">Data pengeluaran masjid</h6>
-                  <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-sm text-white-50 mr-2"></i>Tambah pengeluaran masjid</a>
+                  <h6 class="m-0 font-weight-bold text-success">Data pengeluaran <?= $value['nama_kategori'] ?></h6>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered dataTable" width="100%" cellspacing="0">
                       <thead>
                         <tr>
                           <th>No</th>
                           <th>Nama</th>
                           <th>Tanggal</th>
                           <th>Keterangan</th>
-                          <th>pengeluaran</th>
-                          <th>Saldo</th>
+                          <th>Pengeluaran</th>
+                          <th>Aksi</th>
                         </tr>
                       </thead>
-                      <tfoot>
-                        <tr>
-                          <td colspan="4"></td>
-                          <td>total keluar</td>
-                          <td>total saldo</td>
-                        </tr>
-                      </tfoot>
                       <tbody>
+                        <?php
+
+                          $pengeluaran = 0;
+                          $kategori = $value['id_kategori'];
+
+                          $pemasukan = $this->db->where('pengeluaran !=', 0)->where('id_kategori', $kategori)->get('master')->result_array();
+                          
+                          foreach ($pemasukan as $key => $value) :
+                            $pengeluaran += $value['pengeluaran'];
+
+                        ?>
                         <tr>
-                          <td>Tiger Nixon</td>
-                          <td>System Architect</td>
-                          <td>Edinburgh</td>
-                          <td>61</td>
-                          <td>2011/04/25</td>
-                          <td>$86,000</td>
+                          <td><?= $key+1 ?></td>
+                          <td><?= $value['nama']; echo ($value['status'] == 0) ? '' : ' (diubah)' ; ?></td>
+                          <td><?= $value['tanggal'] ?></td>
+                          <td><?= $value['keterangan'] ?></td>
+                          <td><?= $value['pengeluaran'] ?></td>
+                          <td>
+                            <a href="" class="btn btn-warning btn-sm" title="Ubah"><i class="fa fa-edit"></i></a>
+                            <a href="" class="btn btn-danger btn-sm" title="Hapus"><i class="fa fa-trash"></i></a>
+                          </td>
                         </tr>
-                        <tr>
-                          <td>Garrett Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td>$86,000</td>
-                        </tr>
-                        <tr>
-                          <td>Ashton Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>66</td>
-                          <td>2009/01/12</td>
-                          <td>$86,000</td>
-                        </tr>
+                        <?php endforeach; ?>
                       </tbody>
+                      <tfoot>
+                            <tr>
+                              <th colspan="4" class="text-right">TOTAL PENGELUARAN</th>
+                              <th colspan="2"><?= number_format($pengeluaran,0,',','.') ?></th>
+                            </tr>
+                      </tfoot>
                     </table>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-              <!-- DataTales Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header d-sm-flex align-items-center justify-content-between py-3">
-                  <h6 class="m-0 font-weight-bold text-success">Data pengeluaran takjil</h6>
-                  <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-sm text-white-50 mr-2"></i>Tambah pengeluaran takjil</a>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Nama</th>
-                          <th>Tanggal</th>
-                          <th>Keterangan</th>
-                          <th>pengeluaran</th>
-                          <th>Saldo</th>
-                        </tr>
-                      </thead>
-                      <tfoot>
-                        <tr>
-                          <td colspan="4"></td>
-                          <td>total keluar</td>
-                          <td>total saldo</td>
-                        </tr>
-                      </tfoot>
-                      <tbody>
-                        <tr>
-                          <td>Tiger Nixon</td>
-                          <td>System Architect</td>
-                          <td>Edinburgh</td>
-                          <td>61</td>
-                          <td>2011/04/25</td>
-                          <td>$86,000</td>
-                        </tr>
-                        <tr>
-                          <td>Garrett Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td>$86,000</td>
-                        </tr>
-                        <tr>
-                          <td>Ashton Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>66</td>
-                          <td>2009/01/12</td>
-                          <td>$86,000</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-              <!-- DataTales Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header d-sm-flex align-items-center justify-content-between py-3">
-                  <h6 class="m-0 font-weight-bold text-success">Data pengeluaran ramadhan</h6>
-                  <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-sm text-white-50 mr-2"></i>Tambah pengeluaran ramadhan</a>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Nama</th>
-                          <th>Tanggal</th>
-                          <th>Keterangan</th>
-                          <th>pengeluaran</th>
-                          <th>Saldo</th>
-                        </tr>
-                      </thead>
-                      <tfoot>
-                        <tr>
-                          <td colspan="4"></td>
-                          <td>total keluar</td>
-                          <td>total saldo</td>
-                        </tr>
-                      </tfoot>
-                      <tbody>
-                        <tr>
-                          <td>Tiger Nixon</td>
-                          <td>System Architect</td>
-                          <td>Edinburgh</td>
-                          <td>61</td>
-                          <td>2011/04/25</td>
-                          <td>$86,000</td>
-                        </tr>
-                        <tr>
-                          <td>Garrett Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td>$86,000</td>
-                        </tr>
-                        <tr>
-                          <td>Ashton Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>66</td>
-                          <td>2009/01/12</td>
-                          <td>$86,000</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <?php endforeach; ?>
           </div>
+            
 
         </div>
         <!-- /.container-fluid -->

@@ -33,28 +33,27 @@
                           <th>Tanggal</th>
                           <th>Keterangan</th>
                           <th>Pemasukan</th>
-                          <th>Saldo</th>
                           <th>Aksi</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php
 
-                          $saldo = 0;
+                          $totalmasuk = 0;
                           $kategori = $value['id_kategori'];
 
                           $pemasukan = $this->db->where('pemasukan !=', 0)->where('id_kategori', $kategori)->get('master')->result_array();
                           
                           foreach ($pemasukan as $key => $value) :
+                            $totalmasuk += $value['pemasukan'];
 
                         ?>
                         <tr>
                           <td><?= $key+1 ?></td>
-                          <td><?= $value['nama'] ?></td>
+                          <td><?= $value['nama']; echo ($value['status'] == 0) ? '' : ' (diubah)' ; ?></td>
                           <td><?= $value['tanggal'] ?></td>
                           <td><?= $value['keterangan'] ?></td>
                           <td><?= $value['pemasukan'] ?></td>
-                          <td><?= $saldo += $value['pemasukan'] ?></td>
                           <td>
                             <a href="" class="btn btn-warning btn-sm" title="Ubah"><i class="fa fa-edit"></i></a>
                             <a href="" class="btn btn-danger btn-sm" title="Hapus"><i class="fa fa-trash"></i></a>
@@ -64,8 +63,8 @@
                       </tbody>
                       <tfoot>
                             <tr>
-                              <td colspan="5" class="text-right"><strong>TOTAL SALDO</strong></td>
-                              <td colspan="2"><?= $saldo ?></td>
+                              <th colspan="4" class="text-right">TOTAL PEMASUKAN</th>
+                              <th colspan="2"><?= number_format($totalmasuk,0,',','.') ?></th>
                             </tr>
                       </tfoot>
                     </table>

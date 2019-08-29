@@ -2,8 +2,7 @@
 
 class Admin extends CI_Controller {
 
-	function __construct ()
-	{
+	function __construct () {
 		parent::__construct();
 		
 		if ($this->session->userdata('login') == false) {
@@ -60,6 +59,16 @@ class Admin extends CI_Controller {
 		$this->load->view('pengeluaran');
 		$this->load->view('section/footer');
 	} 
+
+	function kategori () {
+		$data['title'] = 'Kategori';
+
+		$data['kategori'] = $this->M_kategori->getall();
+
+		$this->load->view('section/header', $data);
+		$this->load->view('kategori');
+		$this->load->view('section/footer');
+	}
 
 	function newentry () {
 
