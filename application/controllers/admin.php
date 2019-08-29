@@ -17,9 +17,7 @@ class Admin extends CI_Controller {
 	function index () {
 		$data['title'] = 'Dashboard';
 
-		$kategori = $this->M_kategori->getall();
-
-		$data['kategori'] = $kategori;
+		$data['kategori'] = $this->M_kategori->getall();
 
 		$this->load->view('section/header', $data);
 		$this->load->view('admin');
@@ -35,6 +33,8 @@ class Admin extends CI_Controller {
 	function semua () {
 		$data['title'] = 'Semua riwayat';
 
+		$data['kategori'] = $this->M_kategori->getall();
+		
 		$this->load->view('section/header', $data);
 		$this->load->view('semua');
 		$this->load->view('section/footer');
@@ -43,9 +43,12 @@ class Admin extends CI_Controller {
 	function pemasukan () {
 		$data['title'] = 'Semua pemasukan';
 
+		$data['kategori'] = $this->M_kategori->getall();
+		
 		$this->load->view('section/header', $data);
-		$this->load->view('pemasukan');
+		$this->load->view('pemasukan', $data);
 		$this->load->view('section/footer');
+
 	}
 
 	function pengeluaran () {
@@ -73,8 +76,8 @@ class Admin extends CI_Controller {
 				'nama' => $nama,
 				'tanggal' => $tgl,
 				'keterangan' => $keterangan,
-				'pemasukkan' => $uang,
-				'pengeluaran' => '-',
+				'pemasukan' => $uang,
+				'pengeluaran' => 0,
 				'id_kategori' => $kategori
 			];
 			
@@ -85,7 +88,7 @@ class Admin extends CI_Controller {
 				'nama' => $nama,
 				'tanggal' => $tgl,
 				'keterangan' => $keterangan,
-				'pemasukkan' => '-',
+				'pemasukan' => 0,
 				'pengeluaran' => $uang,
 				'id_kategori' => $kategori
 			];
