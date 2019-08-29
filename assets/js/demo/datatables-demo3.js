@@ -1,6 +1,6 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
-	$('#dataTable').DataTable( {
+	$('table.dataTable').DataTable( {
         "scrollY":        "220px",
         "scrollCollapse": true,
         "paging":         true

@@ -45,7 +45,14 @@
   <script src="<?= base_url('assets/') ?>vendor/datatables/dataTables.bootstrap4.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="<?= base_url('assets/') ?>js/demo/datatables-demo3.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('table.dataTable').DataTable( {
+            "scrollCollapse": true,
+            "paging":         true
+        } );
+    });
+  </script>
 
 
 </body>
