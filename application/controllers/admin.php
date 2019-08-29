@@ -54,6 +54,8 @@ class Admin extends CI_Controller {
 	function pengeluaran () {
 		$data['title'] = 'Semua pengeluaran';
 
+		$data['kategori'] = $this->M_kategori->getall();
+
 		$this->load->view('section/header', $data);
 		$this->load->view('pengeluaran');
 		$this->load->view('section/footer');
@@ -95,13 +97,23 @@ class Admin extends CI_Controller {
 
 		}
 
-		$post = $this->M_master->post($data);
+		$this->M_master->post($data);
 
-		if ($post) {
+		redirect(base_url('admin/semua'));
 
-			redirect(base_url('admin'));
-			
-		}
+	}
+
+	function newkategori () {
+
+		$kategori = $this->input->post('kategori');
+
+		$data = [
+			'nama_kategori' => $kategori
+		];
+		
+		$this->M_kategori->post($data);
+
+		redirect(base_url('admin/semua'));
 
 	}
 }

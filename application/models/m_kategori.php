@@ -7,6 +7,12 @@
             return $this->db->get('kategori')->result_array();
 
         }
+
+        function post ($data) {
+
+            return $this->db->insert('kategori', $data);
+
+        }
         
     }
     

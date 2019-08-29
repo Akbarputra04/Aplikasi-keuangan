@@ -207,7 +207,7 @@
 
   <!-- tambahdata Modal -->
 <div class="modal fade" id="modaltambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Masukkan data</h5>
@@ -259,7 +259,7 @@
 
   <!-- tambahdata Modal -->
 <div class="modal fade" id="newkategori" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Kategori baru</h5>
@@ -268,10 +268,17 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="" method="POST">
-          <div class="form-group">
-            <label for="nama">Nama kategori</label>
-            <input type="text" class="form-control" name="nama" placeholder="masukkan nama kategori">
+        <label class="d-block m-0">Kategori yang sudah ada</label>
+        <?php foreach ($kategori as $value) :?>
+        <div class="d-inline">
+          <span class="badge badge-danger"><?= $value['nama_kategori'] ?></span>
+        </div>
+        <?php endforeach; ?>
+        <hr>
+        <form action="<?= base_url('admin/newkategori') ?>" method="POST">
+          <div class="form-group mt-3">
+            <label for="kategori">Nama kategori</label>
+            <input type="text" class="form-control" name="kategori" placeholder="masukkan nama kategori" required>
           </div>
       </div>
       <div class="modal-footer">
