@@ -48,9 +48,15 @@
   <script>
     $(document).ready(function() {
       $('table.dataTable').DataTable( {
+            "scrollY"       : "200px",
             "scrollCollapse": true,
-            "paging":         true
+            "paging"        : true,
+            "ordering"      : false
         } );
+      $('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
+        $($.fn.dataTable.tables( true ) ).css('width', '100%');
+        $($.fn.dataTable.tables( true ) ).DataTable().columns.adjust().draw();
+    } );
     });
   </script>
 

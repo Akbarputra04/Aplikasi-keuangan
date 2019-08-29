@@ -47,8 +47,6 @@
                           
                           foreach ($pemasukan as $key => $value) :
 
-                            $saldo = $this->db->where('id_kategori', $kategori)->select_sum('pemasukan', 'saldo')->get('master')->row_array();
-
                         ?>
                         <tr>
                           <td><?= $key+1 ?></td>
@@ -56,7 +54,7 @@
                           <td><?= $value['tanggal'] ?></td>
                           <td><?= $value['keterangan'] ?></td>
                           <td><?= $value['pemasukan'] ?></td>
-                          <td><?= $saldo['saldo'] ?></td>
+                          <td><?= $saldo += $value['pemasukan'] ?></td>
                           <td>
                             <a href="" class="btn btn-warning btn-sm" title="Ubah"><i class="fa fa-edit"></i></a>
                             <a href="" class="btn btn-danger btn-sm" title="Hapus"><i class="fa fa-trash"></i></a>
@@ -64,6 +62,12 @@
                         </tr>
                         <?php endforeach; ?>
                       </tbody>
+                      <tfoot>
+                            <tr>
+                              <td colspan="5" class="text-right"><strong>TOTAL SALDO</strong></td>
+                              <td colspan="2"><?= $saldo ?></td>
+                            </tr>
+                      </tfoot>
                     </table>
                   </div>
                 </div>
