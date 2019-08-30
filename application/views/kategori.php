@@ -28,8 +28,8 @@
                                 <td><?= $key+1 ?></td>
                                 <td><?= $value['nama_kategori'] ?></td>
                                 <td>
-                                <a href="" class="btn btn-warning btn-sm" title="Ubah"><i class="fa fa-edit"></i></a>
-                                <a href="" class="btn btn-danger btn-sm" title="Hapus"><i class="fa fa-trash"></i></a>
+                                <a href="#ubah" data-toggle="modal" data-id="<?= $value['id_kategori'] ?>" class="btn btn-warning btn-sm ubahkategori" title="Ubah"><i class="fa fa-edit"></i></a>
+                                <a href="#hapus" data-toggle="modal" data-id="<?= $value['id_kategori'] ?>" class="btn btn-danger btn-sm hapuskategori" title="Hapus"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

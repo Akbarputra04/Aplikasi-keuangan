@@ -289,3 +289,78 @@
     </div>
   </div>
 </div>
+
+<!-- modal edit -->
+<div class="modal fade" id="ubah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ubah data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="<?= base_url('admin/ubahentri') ?>" method="POST">
+              <input type="hidden" name="id" class="id">
+          <div class="form-group d-none">
+            <label class="d-block">Jenis</label>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="masuk" name="jenis" class="custom-control-input masuk" value="pemasukan" required="true">
+              <label class="custom-control-label" for="masuk">Pemasukan</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="keluar" name="jenis" class="custom-control-input keluar" value="pengeluaran" required="true">
+              <label class="custom-control-label" for="keluar">Pengeluaran</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="kategori">Kategori</label>
+            <a href="#" class="float-right text-secondary" data-toggle="modal" data-target="#newkategori" data-dismiss="modal"><i class="fa fa-plus mr-2"></i>Kategori baru</a>
+            <select class="form-control" id="kategori" name="kategori" required="true">
+              <?php foreach ($kategori as $value) :?>
+              <option value="<?= $value['id_kategori'] ?>"><?= $value['nama_kategori'] ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="uang">Jumlah uang</label>
+            <input type="number" class="form-control" name="uang" placeholder="masukkan jumlah uang" required="true">
+          </div>
+          <div class="form-group">
+            <label for="keterangan">Keterangan</label>
+            <textarea class="form-control" name="keterangan" placeholder="masukkan keterangan" required="true"></textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-warning"><i class="fa fa-edit mr-2"></i>Ubah</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<!-- modal hapus -->
+<div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4>Data akan dihapus secara permanen!</h4>
+        <form action="<?= base_url('admin/hapusentri') ?>" method="POST">
+          <input type="hidden" name="id" class="id">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-danger"><i class="fa fa-trash mr-2"></i>Hapus</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>

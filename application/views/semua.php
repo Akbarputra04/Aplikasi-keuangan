@@ -14,7 +14,7 @@
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <?php foreach($kategori as $key => $value) : ?>
             <li class="nav-item">
-              <a href=""" class="nav-link text-success <?= ($key == 0) ? 'active' : '' ; ?>" data-toggle="tab" data-target="#<?= $value['nama_kategori'] ?>" role="tab" aria-selected="true"><?= $value['nama_kategori'] ?></a>
+              <a href="" class="nav-link text-success <?= ($key == 0) ? 'active' : '' ; ?>" data-toggle="tab" data-target="#<?= $value['nama_kategori'] ?>" role="tab" aria-selected="true"><?= $value['nama_kategori'] ?></a>
             </li>
             <?php endforeach; ?>
           </ul>
@@ -27,7 +27,6 @@
                 $kategori = $value['id_kategori'];
 
                 $master = $this->db->where('id_kategori', $kategori)->get('master')->result_array();
-                // number_format($cart['subtotal'],0,',','.')
                 foreach ($master as $key => $value) :
 
               ?>
@@ -38,8 +37,8 @@
                   <a href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v text-secondary"></i></a>
                   <div class="dropdown-menu dropdown-menu-right">
                     <h6 class="dropdown-header">Aksi</h6>
-                    <a class="dropdown-item" href="<?= $value['id'] ?>">Ubah</a>
-                    <a class="dropdown-item" href="#">Hapus</a>
+                    <a class="dropdown-item ubah" href="#ubah" data-toggle="modal" data-id="<?= $value['id'] ?>">Ubah</a>
+                    <a class="dropdown-item hapus" href="#hapus" data-toggle="modal" data-id="<?= $value['id'] ?>">Hapus</a>
                   </div>
                 </div>
                 <div class="card-body p-3">

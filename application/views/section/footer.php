@@ -46,6 +46,96 @@
 
   <!-- Page level custom scripts -->
   <script>
+
+  $(function () {
+
+    $('.ubah').on('click', function () {
+
+      const id = $(this).data('id');
+
+      $.ajax({
+
+        url: '<?= base_url('admin/getdatamaster') ?>',
+        method: 'post',
+        data: {
+          id: id
+        },
+        dataType: 'json',
+        success: function (data) {
+
+          if (data.pemasukan != 0) {
+            $('[name="id"]').val(data.id)
+            $('.masuk').prop('checked', true)
+            $('[name="kategori"]').val(data.id_kategori)
+            $('[name="uang"]').val(data.pemasukan)
+            $('[name="keterangan"]').val(data.keterangan)
+          } else {
+            $('[name="id"]').val(data.id)
+            $('.keluar').prop('checked', true)
+            $('[name="kategori"]').val(data.id_kategori)
+            $('[name="uang"]').val(data.pengeluaran)
+            $('[name="keterangan"]').val(data.keterangan)
+          }
+
+        }
+
+      });
+
+    });
+
+    $('.hapus').on('click', function () {
+
+      const id = $(this).data('id')
+
+      $('.id').val(id)
+
+    });
+
+    $('.ubahkategori').on('click', function () {
+      
+      $('.modal-title').html('Ubah kategori')
+      $('form').attr('action', '<?= base_url('admin/ubahkategori') ?>')
+      $('form div:nth-child(3), form div:nth-child(5)').addClass('d-none')
+      $('form div:nth-child(2) input, form div:nth-child(3) select, form div:nth-child(5) textarea').attr('required', false)
+      $('form div:nth-child(4) label').html('Nama kategori')
+      $('form div:nth-child(4) input').attr('type', 'text').attr('name', 'kategori').attr('placeholder', 'masukkan nama kategori')
+
+      const id = $(this).data('id')
+
+      $.ajax({
+
+        url : '<?= base_url('admin/getdatakategori') ?>',
+        method : 'post',
+        data : {id : id},
+        dataType : 'json',
+        success : function (data) {
+
+          $('.id').val(data.id_kategori)
+          $('[name="kategori"]').val(data.nama_kategori)
+
+        }
+
+      });
+      
+
+    });
+
+    $('.hapuskategori').on('click', function () {
+
+      $('.modal-title').html('Hapus kategori')
+      $('form').attr('action', '<?= base_url('admin/hapuskategori') ?>')
+
+      const id = $(this).data('id')
+
+      $('.id').val(id)
+
+    });
+
+  });
+
+  
+  </script>
+  <script>
     $(document).ready(function() {
       $('table.dataTable').DataTable( {
             "scrollY"       : "200px",

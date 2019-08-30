@@ -45,7 +45,7 @@ class Admin extends CI_Controller {
 		$data['kategori'] = $this->M_kategori->getall();
 		
 		$this->load->view('section/header', $data);
-		$this->load->view('pemasukan', $data);
+		$this->load->view('pemasukan');
 		$this->load->view('section/footer');
 
 	}
@@ -72,9 +72,9 @@ class Admin extends CI_Controller {
 
 	function newentry () {
 
-		$id = date('ymdhms');
+		$id = date('ymdHis');
 		$nama = $this->session->userdata('username');
-		$tgl = date('Y-m-d');
+		$tgl = date('Y-m-d H:i:s');
 		$keterangan = $this->input->post('keterangan');
 		$uang = $this->input->post('uang');
 		$kategori = $this->input->post('kategori');
@@ -89,7 +89,8 @@ class Admin extends CI_Controller {
 				'keterangan' => $keterangan,
 				'pemasukan' => $uang,
 				'pengeluaran' => 0,
-				'id_kategori' => $kategori
+				'id_kategori' => $kategori,
+				'status' => 0
 			];
 			
 		} else {
@@ -101,7 +102,8 @@ class Admin extends CI_Controller {
 				'keterangan' => $keterangan,
 				'pemasukan' => 0,
 				'pengeluaran' => $uang,
-				'id_kategori' => $kategori
+				'id_kategori' => $kategori,
+				'status' => 0
 			];
 
 		}
@@ -123,6 +125,94 @@ class Admin extends CI_Controller {
 		$this->M_kategori->post($data);
 
 		redirect(base_url('admin/semua'));
+
+	}
+
+	function getdatamaster () {
+
+		$data = $this->M_master->getbyid($_POST['id']);
+		echo json_encode($data);
+
+	}
+
+	function ubahentri () {
+
+		$id = $this->input->post('id');
+		$nama = $this->session->userdata('username');
+		$keterangan = $this->input->post('keterangan');
+		$uang = $this->input->post('uang');
+		$kategori = $this->input->post('kategori');
+		$jenis = $this->input->post('jenis');
+
+		if ($jenis == 'pemasukan') {
+
+			$data = [
+				'nama' => $nama,
+				'keterangan' => $keterangan,
+				'pemasukan' => $uang,
+				'pengeluaran' => 0,
+				'id_kategori' => $kategori,
+				'status' => 1
+			];
+			
+		} else {
+
+			$data = [
+				'nama' => $nama,
+				'keterangan' => $keterangan,
+				'pemasukan' => 0,
+				'pengeluaran' => $uang,
+				'id_kategori' => $kategori,
+				'status' => 1
+			];
+
+		}
+
+		$this->M_master->update($data, $id);
+
+		redirect(base_url('admin/semua'));
+		
+	}
+	
+	function hapusentri () {
+		
+		$id = $this->input->post('id');
+		
+		$drop = $this->M_master->delete($id);
+		
+		redirect(base_url('admin/semua'));
+
+	}
+
+	function getdatakategori () {
+
+		$data = $this->M_kategori->getbyid($_POST['id']);
+		echo json_encode($data);
+
+	}
+
+	function ubahkategori () {
+
+		$id = $this->input->post('id');
+		$kategori = $this->input->post('kategori');
+
+		$data = [
+			'nama_kategori' => $kategori
+		];
+
+		$update = $this->M_kategori->update($data, $id);
+
+		redirect(base_url('admin/kategori'));
+
+	}
+
+	function hapuskategori () {
+
+		$id = $this->input->post('id');
+
+		$drop = $this->M_kategori->delete($id);
+
+		redirect(base_url('admin/kategori'));
 
 	}
 }

@@ -55,8 +55,8 @@
                           <td><?= $value['keterangan'] ?></td>
                           <td><?= $value['pemasukan'] ?></td>
                           <td>
-                            <a href="" class="btn btn-warning btn-sm" title="Ubah"><i class="fa fa-edit"></i></a>
-                            <a href="" class="btn btn-danger btn-sm" title="Hapus"><i class="fa fa-trash"></i></a>
+                            <a href="#ubah" data-toggle="modal" data-id="<?= $value['id'] ?>" class="btn btn-warning btn-sm ubah" title="Ubah"><i class="fa fa-edit"></i></a>
+                            <a href="#hapus" data-toggle="modal" data-id="<?= $value['id'] ?>" class="btn btn-danger btn-sm hapus" title="Hapus"><i class="fa fa-trash"></i></a>
                           </td>
                         </tr>
                         <?php endforeach; ?>
