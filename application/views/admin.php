@@ -18,7 +18,21 @@
 					<div class="row no-gutters align-items-center">
 					<div class="col mr-2">
 						<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Saldo</div>
-						<div class="h5 mb-0 font-weight-bold text-gray-800">Rp.4.636.300</div>
+						<div class="h5 mb-0 font-weight-bold text-gray-800">
+							<?php
+
+								$saldo = 0;		
+								foreach ($master as $value) {
+									if ($value['pemasukan'] != 0) {
+										$saldo += $value['pemasukan'];
+									} else {
+										$saldo -= $value['pengeluaran'];
+									}
+								}
+								echo 'Rp.'.number_format($saldo,'0',',','.').',-';
+
+							?>
+						</div>
 					</div>
 					<div class="col-auto">
 						<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -35,7 +49,7 @@
 					<div class="row no-gutters align-items-center">
 					<div class="col mr-2">
 						<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pemasukan (Harian)</div>
-						<div class="h5 mb-0 font-weight-bold text-gray-800">Rp.243.500</div>
+						<div class="h5 mb-0 font-weight-bold text-gray-800"><?= ($masuk['pemasukan'] == 0) ? '0' : 'Rp.'.number_format($masuk['pemasukan'],'0',',','.').',-' ; ?></div>
 					</div>
 					<div class="col-auto">
 						<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -54,7 +68,7 @@
 						<div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Pengeluaran (Harian)</div>
 						<div class="row no-gutters align-items-center">
 						<div class="col-auto">
-							<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Rp.98.500</div>
+							<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= ($keluar['pengeluaran'] == 0) ? '0' : 'Rp.'.number_format($keluar['pengeluaran'],'0',',','.').',-' ; ?></div>
 						</div>
 						</div>
 					</div>

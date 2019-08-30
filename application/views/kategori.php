@@ -19,7 +19,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>Aksi</th>
+                                <th><a href="#newkategori" data-toggle="modal" class="btn btn-primary btn-sm" title="kategori baru"><i class="fa fa-plus mr-2"></i>Kategori baru</a></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,8 +28,8 @@
                                 <td><?= $key+1 ?></td>
                                 <td><?= $value['nama_kategori'] ?></td>
                                 <td>
-                                <a href="#ubah" data-toggle="modal" data-id="<?= $value['id_kategori'] ?>" class="btn btn-warning btn-sm ubahkategori" title="Ubah"><i class="fa fa-edit"></i></a>
-                                <a href="#hapus" data-toggle="modal" data-id="<?= $value['id_kategori'] ?>" class="btn btn-danger btn-sm hapuskategori" title="Hapus"><i class="fa fa-trash"></i></a>
+                                <a href="#ubah" data-toggle="modal" data-id="<?= $value['id_kategori'] ?>" class="btn btn-warning btn-sm ubahkategori" title="Ubah kategori"><i class="fa fa-edit"></i></a>
+                                <a href="#hapus" data-toggle="modal" data-id="<?= $value['id_kategori'] ?>" class="btn btn-danger btn-sm hapuskategori" title="Hapus kategori"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

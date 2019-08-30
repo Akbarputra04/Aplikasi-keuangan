@@ -16,7 +16,12 @@ class Admin extends CI_Controller {
 	function index () {
 		$data['title'] = 'Dashboard';
 
+		$today = date('Y-m-d');
+
 		$data['kategori'] = $this->M_kategori->getall();
+		$data['master'] = $this->M_master->getall();
+		$data['masuk'] = $this->M_master->getbyjenis('pemasukan', $today);
+		$data['keluar'] = $this->M_master->getbyjenis('pengeluaran', $today);
 
 		$this->load->view('section/header', $data);
 		$this->load->view('admin');

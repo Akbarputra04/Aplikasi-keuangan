@@ -19,17 +19,27 @@
             <?php endforeach; ?>
           </ul>
           <div class="tab-content mt-4" id="myTabContent">
-            <?php foreach($kategori as $key => $value) : ?>
-            <div class="tab-pane fade show <?= ($key == 0) ? 'active' : '' ; ?>" id="<?= $value['nama_kategori'] ?>" role="tabpanel">
-              <?php
-
+            <?php
+              foreach($kategori as $key => $value) : 
                 $saldo = 0;
+                $saldoper = 0;
                 $kategori = $value['id_kategori'];
 
                 $master = $this->db->where('id_kategori', $kategori)->get('master')->result_array();
-                foreach ($master as $key => $value) :
 
+            ?>
+            <div class="tab-pane fade show <?= ($key == 0) ? 'active' : '' ; ?>" id="<?= $value['nama_kategori'] ?>" role="tabpanel">
+              <?php
+                foreach ($master as $key => $val) {
+                  if ($val['pemasukan'] != 0) {
+                    $saldoper += $val['pemasukan'];
+                  } else {
+                    $saldoper -= $val['pengeluaran'];
+                  }
+                }
               ?>
+              <h1 class="text-center text-success mb-3"><strong><?= 'Rp.'.number_format($saldoper,0,',','.').',-' ?></strong></h1>
+              <?php foreach ($master as $key => $value) : ?>
               <div class="card shadow border-left-<?= ($value['pemasukan'] != 0) ? 'warning' : 'danger' ; ?> mb-2">
                 <div class="card-header d-sm-flex align-items-center py-3">
                   <h6 class="m-0 font-weight-bold text-gray-500"><?= $value['tanggal']; echo ($value['status'] == 0) ? '' : ' (diubah)' ; ?></h6>
