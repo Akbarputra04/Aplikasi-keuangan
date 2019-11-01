@@ -11,6 +11,7 @@ class Admin extends CI_Controller {
 
 		$this->load->model('M_kategori');
 		$this->load->model('M_master');
+		$this->load->model('M_user');
 	}
 
 	function index () {
@@ -72,6 +73,17 @@ class Admin extends CI_Controller {
 
 		$this->load->view('section/header', $data);
 		$this->load->view('kategori');
+		$this->load->view('section/footer');
+	}
+
+	function user () {
+		$data['title'] = 'User';
+
+		$data['user'] = $this->M_user->getall();
+		$data['level'] = $this->M_user->getlevel();
+
+		$this->load->view('section/header', $data);
+		$this->load->view('user');
 		$this->load->view('section/footer');
 	}
 
@@ -218,6 +230,16 @@ class Admin extends CI_Controller {
 		$drop = $this->M_kategori->delete($id);
 
 		redirect(base_url('admin/kategori'));
+
+	}
+
+	function hapususer () {
+
+		$id = $this->input->post('id');
+
+		$drop = $this->M_user->delete($id);
+
+		redirect(base_url('admin/user'));
 
 	}
 }

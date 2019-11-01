@@ -131,6 +131,17 @@
 
     });
 
+    $('.hapususer').on('click', function () {
+
+      $('.modal-title').html('Hapus user')
+      $('form').attr('action', '<?= base_url('admin/hapususer') ?>')
+
+      const id = $(this).data('id')
+
+      $('.id').val(id)
+
+    });
+
   });
 
   
