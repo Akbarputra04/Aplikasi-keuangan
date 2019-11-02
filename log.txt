@@ -1,0 +1,9 @@
+2019-08-30 05:51:08 - ::1 - http://localhost/aplikasi-keuangan/admin/semua
+2019-08-30 05:51:13 - ::1 - http://localhost/aplikasi-keuangan/admin
+2019-08-30 05:52:10 - ::1 - http://localhost/aplikasi-keuangan/admin/pemasukan
+2019-08-30 05:52:39 - ::1 - No Refferer
+2019-08-30 05:54:03 - ::1 - No Refferer
+2019-08-30 05:54:04 - ::1 - No Refferer
+2019-08-30 05:54:15 - ::1 - No Refferer
+2019-08-30 05:54:27 - ::1 - No Refferer
+2019-08-30 05:54:28 - ::1 - No Refferer
