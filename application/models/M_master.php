@@ -28,7 +28,7 @@
         function getbyjenis ($jenis, $today) {
 
             $this->db->where($jenis.'!=', 0);
-            $this->db->like('tanggal', '2019-08-27', 'both');
+            $this->db->like('tanggal', $today, 'both');
             $this->db->select_sum($jenis, $jenis);
             return $this->db->get(TABEL)->row_array();
 

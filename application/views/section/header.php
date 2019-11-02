@@ -73,7 +73,7 @@
       </li>
       
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item <?php if($this->uri->segment('2') == 'pemasukan' OR $this->uri->segment('2') == 'pengeluaran') echo 'active' ?>">
+      <li class="nav-item <?php if($this->uri->segment('2') == 'pemasukan' OR $this->uri->segment('2') == 'pengeluaran' OR $this->uri->segment('2') == 'kategori' OR $this->uri->segment('2') == 'user') echo 'active' ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#masterdata" aria-expanded="true" aria-controls="collapseriwayat">
           <i class="fas fa-fw fa-folder"></i>
           <span>Master data</span>
@@ -83,6 +83,7 @@
             <a class="collapse-item" href="<?= base_url('admin/pemasukan') ?>">Pemasukan</a>
             <a class="collapse-item" href="<?= base_url('admin/pengeluaran') ?>">Pengeluaran</a>
             <a class="collapse-item" href="<?= base_url('admin/kategori') ?>">Kategori</a>
+            <a class="collapse-item" href="<?= base_url('admin/user') ?>">User</a>
           </div>
         </div>
       </li>
@@ -193,7 +194,7 @@
     </div>
   </div>
 
-  <!-- tambahdata Modal -->
+  <!-- tambah data Modal -->
 <div class="modal fade" id="modaltambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -245,7 +246,7 @@
   </div>
 </div>
 
-  <!-- tambahdata Modal -->
+  <!-- tambah kategori Modal -->
 <div class="modal fade" id="newkategori" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -267,6 +268,50 @@
           <div class="form-group mt-3">
             <label for="kategori">Nama kategori</label>
             <input type="text" class="form-control" name="kategori" placeholder="masukkan nama kategori" required>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Tambah</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<!-- tambah user Modal -->
+<div class="modal fade" id="newuser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">user baru</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="<?= base_url('admin/newuser') ?>" method="POST">
+          <div class="form-group mt-3">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" placeholder="masukkan username" required>
+          </div>
+          <div class="form-group mt-3">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="masukkan password" required>
+          </div>
+          <div class="form-group mt-3">
+            <label for="repassword">Konfirmasi password</label>
+            <input type="password" class="form-control" name="repassword" placeholder="masukkan Konfirmasi password" required>
+          </div>
+          <div class="form-group">
+            <div class="form-group">
+              <label for="level">Level</label>
+              <select class="form-control" id="level" name="level" required>
+                <?php foreach ($level as $value) :?>
+                <option value="<?= $value['id_level'] ?>"><?= $value['nama_level'] ?></option>
+                <?php endforeach; ?>
+              </select>
+            </div>
           </div>
       </div>
       <div class="modal-footer">
